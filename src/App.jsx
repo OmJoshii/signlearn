@@ -1,25 +1,21 @@
-import { useState } from 'react'
-import LessonCard from './components/LessonCard'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import HomePage from './pages/HomePage'
+import LessonsPage from './pages/LessonsPage'
+import LessonDetailPage from './pages/LessonDetailPage'
+import PracticePage from './pages/PracticePage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>SignLearn</h1>
-
-      <p>Signs practiced today: <strong>{count}</strong></p>
-      <button onClick={() => setCount(count + 1)}>
-        Practice one more
-      </button>
-
-      <h2>Lessons</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <LessonCard title="Alphabet A-F"  emoji="🤟" level="Beginner" />
-        <LessonCard title="Alphabet G-L"  emoji="✋" level="Beginner" />
-        <LessonCard title="Numbers 1-10"  emoji="👋" level="Beginner" />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/"            element={<HomePage />} />
+        <Route path="/lessons"     element={<LessonsPage />} />
+        <Route path="/lessons/:id" element={<LessonDetailPage />} />
+        <Route path="/practice"    element={<PracticePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
